@@ -16,10 +16,6 @@ def file_opener(directory_item, enable_default_handler=True):
     if enable_default_handler: default(directory_item)
 
 
-# counts how many times the code function was called
-global code_counter
-code_counter = 0
-
 # default file opener
 def default(file):
     os.system("xdg-open \"" + file +"\"")
@@ -48,6 +44,9 @@ def dir(path):
 The code really begins here
 
 '''
+
+
+
 for i in range(1, len(sys.argv)):
     # checks if the item in the inputted args is a directory, opens it with the dir method
     if os.path.isdir(sys.argv[i]): dir(sys.argv[i])        

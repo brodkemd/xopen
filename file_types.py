@@ -1,9 +1,11 @@
 import os
 
-def latex(file):
-    # counts the latex file in the code counter variable so that vs code will be opened with it
+def counter(func):
+    global code_counter
     code_counter+=1
 
+@counter
+def latex(file):
     # splits the inputted file path in the file name and its directory
     tail, head = os.path.split(file)
     
