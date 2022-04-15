@@ -16,8 +16,13 @@ def file_opener(directory_item, enable_default_handler=True):
     if enable_default_handler: default(directory_item)
 
 
+# counts how many times the code function was called
+global code_counter
+code_counter = 0
+
 # default file opener
-def default(file): os.system("xdg-open \"" + file +"\"")
+def default(file):
+    os.system("xdg-open \"" + file +"\"")
 
 # opens the inputted file in vscode
 def code(file): os.system("code \"" + file + "\"")
@@ -31,13 +36,13 @@ extension_commands = {".tex" : latex,
 
 # opens the current directory
 def dir(path):
-    # opens the inputted path in vscode
-    code(path)
-
     # goes through the files at the inputted path and sees if a file type has a special extension to be handled accordingly
     for item in os.listdir(path):
         file_opener(os.path.join(path, item), enable_default_handler=False)
-        
+
+    # opens the inputted path in vscode if there is a file in the directory that requires it
+    if code_counter: code(path)
+
 
 '''
 The code really begins here

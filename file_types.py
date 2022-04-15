@@ -1,5 +1,9 @@
 import os
+
 def latex(file):
+    # counts the latex file in the code counter variable so that vs code will be opened with it
+    code_counter+=1
+
     # splits the inputted file path in the file name and its directory
     tail, head = os.path.split(file)
     
