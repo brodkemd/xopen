@@ -1,4 +1,3 @@
-from file_types import *
 import os, sys
 
 # general file opener
@@ -23,13 +22,6 @@ def default(file):
 # opens the inputted file in vscode
 def code(file): os.system("code \"" + file + "\"")
 
-
-# commands correspinding to a certain file extension
-extension_commands = {".tex" : latex,
-                      ".txt" : code,
-                      ".pdf" : default}
-
-
 # opens the current directory
 def dir(path):
     # goes through the files at the inputted path and sees if a file type has a special extension to be handled accordingly
@@ -44,8 +36,22 @@ def dir(path):
 The code really begins here
 
 '''
+<<<<<<< HEAD
 
 
+=======
+# counts how many times the code function was called
+global code_counter
+code_counter = 0
+
+# this import is here so it has access to all of the above information in this file
+from file_types import *
+
+# commands correspinding to a certain file extension
+extension_commands = {".tex" : latex,
+                      ".txt" : code,
+                      ".pdf" : default}
+>>>>>>> e3eb157fa974005b62433a7b2d27f92aa55480d9
 
 for i in range(1, len(sys.argv)):
     # checks if the item in the inputted args is a directory, opens it with the dir method
