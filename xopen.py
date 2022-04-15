@@ -1,4 +1,3 @@
-from file_types import *
 import os, sys
 
 # general file opener
@@ -16,23 +15,12 @@ def file_opener(directory_item, enable_default_handler=True):
     if enable_default_handler: default(directory_item)
 
 
-# counts how many times the code function was called
-global code_counter
-code_counter = 0
-
 # default file opener
 def default(file):
     os.system("xdg-open \"" + file +"\"")
 
 # opens the inputted file in vscode
 def code(file): os.system("code \"" + file + "\"")
-
-
-# commands correspinding to a certain file extension
-extension_commands = {".tex" : latex,
-                      ".txt" : code,
-                      ".pdf" : default}
-
 
 # opens the current directory
 def dir(path):
@@ -48,6 +36,18 @@ def dir(path):
 The code really begins here
 
 '''
+# counts how many times the code function was called
+global code_counter
+code_counter = 0
+
+# this import is here so it has access to all of the above information in this file
+from file_types import *
+
+# commands correspinding to a certain file extension
+extension_commands = {".tex" : latex,
+                      ".txt" : code,
+                      ".pdf" : default}
+
 for i in range(1, len(sys.argv)):
     # checks if the item in the inputted args is a directory, opens it with the dir method
     if os.path.isdir(sys.argv[i]): dir(sys.argv[i])        
